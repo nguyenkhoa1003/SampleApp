@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "misfit.oauth"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "PREFIX_URI", "\"shine://authorize?response_type=token&app_id=\""
+        buildConfigField "String", "SUFFIX_URI", "\"&secret_hash=\""
+
+        buildConfigField "String", "APP_KEY", APP_KEY
+        buildConfigField "String", "APP_SECRET", APP_SECRET
+        buildConfigField "String", "MISFIT_APP_ID", MISFIT_APP_ID
+
+        resValue "string", "HOST", "authorize"
+        resValue "string", "SCHEME_CALLBACK", getScheme()
+    }
+
+    buildTypes {
+
+        debug {
+//            buildConfigField "String", "PREFIX_URI", "\"shine://authorize?response_type=token&app_id=\""
+//            buildConfigField "String", "SUFFIX_URI", "\"&secret_hash=\""
+//
+//            buildConfigField "String", "APP_KEY", APP_KEY
+//            buildConfigField "String", "APP_SECRET", APP_SECRET
+//            buildConfigField "String", "MISFIT_APP_ID", MISFIT_APP_ID
+//
+//            resValue "string", "HOST", "authorize"
+//            resValue "string", "SCHEME_CALLBACK", getScheme()
+        }
+
+        release {
+//            buildConfigField "String", "PREFIX_URI", "\"shine://authorize?response_type=token&app_id=\""
+//            buildConfigField "String", "SUFFIX_URI", "\"&secret_hash=\""
+//
+//            buildConfigField "String", "APP_KEY", APP_KEY
+//            buildConfigField "String", "APP_SECRET", APP_SECRET
+//            buildConfigField "String", "MISFIT_APP_ID", MISFIT_APP_ID
+//
+//            resValue "string", "HOST", "authorize"
+//            resValue "string", "SCHEME_CALLBACK", getScheme()
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def getScheme() {
+    return "mfc-"+ APP_KEY.toLowerCase().replaceAll('\"', '');
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
